@@ -1,10 +1,13 @@
 import React from 'react';
 import './App.css';
 
-function App() {
+//Components
+import Router from '../Router'
+
+const App = () => {
   return (
-    <div >
-      <h1>Init project E-COMMERCE</h1>
+    <div>
+      <Router />
     </div>
   );
 }
