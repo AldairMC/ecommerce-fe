@@ -21,13 +21,19 @@ const Container = styled.div`
 `
 
 const Products = props => {
-    let { products } = props
+    let { products, addProduct, delProduct, purchase, get_count } = props
     return (
         <Container>
             {
                 Object.keys(products).map(key => (
                     <Product 
-                        key={key}
+                        {...{
+                            key,
+                            addProduct,
+                            delProduct,
+                            purchase,
+                            get_count
+                        }}
                         product={products[key]}
                     />
                 ))
