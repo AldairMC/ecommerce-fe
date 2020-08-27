@@ -7,7 +7,7 @@ import Product from './Product'
 const Container = styled.div`
     display: grid;
     width: 100%;
-    margin: 0 10% 50px 7%; 
+    margin: 0 10% 50px 7%;
     grid-template-columns: repeat(3, 25%);
     text-align: center;
     @media (max-width: 330px){

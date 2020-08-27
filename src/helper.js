@@ -21,9 +21,10 @@ export const calc_total = (price, count, type) => {
 
 export const calc_total_purchase = (purchase) => {
     let x = []
-    purchase.map(i => {
-        let aux = calc_total(i.price, i.cantidad, i.type)
+    for (let index = 0; index < purchase.length; index++) {
+        let { price, cantidad, type } = purchase[index]
+        let aux = calc_total(price, cantidad, type)
         x.push(aux)
-    })
+    }
     return x.reduce((a, b) => a+b, 0)
 }

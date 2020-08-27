@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import styled from 'styled-components'
-import { element } from 'prop-types';
 
 
 class Product extends Component {
@@ -28,14 +27,33 @@ class Product extends Component {
         const Img = styled.img`
             transition: 0.8s ease;
             &:hover {
-                -webkit-transform: scale(3.4);
-                transform: scale(3.4) 
+                -webkit-transform: scale(2.4);
+                transform: scale(2.4)
             }
+        `
+
+        const Name = styled.span`
+            display: grid;
+            font-size: 30px;
+            color: #ffcb05;
+            font-weight: bold;
+            text-shadow: 3px 3px 3px #3662ac; 
+        `
+
+        const Price = styled.span`
+            display: grid;
+            font-size: 25px;
+            color: #3662ac;
+            margin-bottom: 30px;
+            font-weight: bold;
         `
 
         const Buttons = styled.div`
             display: grid;
             grid-template-columns: 40% 20% 40%;
+            &:hover {
+                color: red;
+            }
         `
 
         const Button = styled.button`
@@ -48,14 +66,17 @@ class Product extends Component {
 
         const Count = styled.span`
             align-self: center;
+            font-size: 25px;
+            color: #3662ac;
+            text-shadow: 2px 2px 2px #3662ac; 
         `
 
         let { id, name, src, price } = this.props.product
         return (
             <Container>
-                <p>{name}</p>
+                <Name>{name}</Name>
                 <Img src={src} alt="Image" width="100px" height="100px"/>
-                <p>{`$${price}`}</p>
+                <Price>{`$${price}`}</Price>
                 <Buttons>
                     <Button onClick={() => this.onClickDel(this.props.product)}> <i className="fas fa-minus-circle"></i> </Button>
                     <Count> { this.props.get_count(id)?.cantidad || 0 } </Count>

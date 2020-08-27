@@ -35,7 +35,7 @@ const ProductDiscount = props => {
     return (
         <>
             <Card>
-                <img src={src} alt="Image" />
+                <img src={src} alt="logo" />
             </Card>
             <Description>
                 <Name>{name}</Name>
