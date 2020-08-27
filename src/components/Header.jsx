@@ -27,7 +27,7 @@ const Header = props => {
     return (
         <Container>
             <Img 
-                src="hero.png"
+                src="assets/hero.png"
                 alt="Hero"
             >
             </Img>
