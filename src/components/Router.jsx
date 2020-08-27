@@ -7,7 +7,7 @@ import Header from './Header'
 import Navbar from './Navbar'
 import Products from './Products/Products'
 import Footer from './Footer'
-import Buy from './Buy'
+import Buy from './Purchase/Buy'
 import Discount from './Discounts/Discount'
 
 class Router extends Component {
@@ -29,7 +29,7 @@ class Router extends Component {
     get_count = id => this.state.purchase.find(product => product.id === id )
 
     add_product_state = data => {
-        let { id } = data //Get ID.
+        let { id, src, price, name, discount, type } = data //Get ID.
         let compra = [...this.state.purchase]
         let validation = compra.findIndex(p => p.id === id)
         if (validation >= 0){
@@ -38,6 +38,11 @@ class Router extends Component {
         }
         else compra = [...compra, {
             id,
+            src, 
+            price, 
+            name, 
+            discount, 
+            type,
             cantidad: 1
         }]
         return this.setState({
@@ -46,7 +51,7 @@ class Router extends Component {
     }
 
     del_product_state = data => {
-        let { id } = data //Get ID.
+        let { id, src, price, name, discount, type } = data //Get ID.
         let compra = [...this.state.purchase]
         let validation = compra.findIndex(p => p.id === id)
         if (validation >= 0){
@@ -55,6 +60,11 @@ class Router extends Component {
         } 
         else compra = [...compra, {
             id,
+            src, 
+            price, 
+            name, 
+            discount, 
+            type,
             cantidad: 1
         }]
         return this.setState({
@@ -88,23 +98,33 @@ class Router extends Component {
                                     delProduct={this.del_product_state}
                                     get_count={this.get_count}
                                 />
+                                <Footer />
                             </>
                         )}>
                         </Route>
                         <Route exact path="/buy" render={() => (
-                            <Buy />
+                            <>
+                                <Buy 
+                                    {...{
+                                        purchase
+                                    }}
+                                />
+                            </>
                         )}>
                         </Route>
                         <Route exact path="/discount" render={() => (
-                            <Discount 
-                                {...{
-                                    products
-                                }}
-                            />
+                            <>
+                                <Discount 
+                                    {...{
+                                        products
+                                    }}
+                                />
+                                <Footer />
+                            </>
+                            
                         )}>
                         </Route>
                     </Switch>
-                    <Footer />
                 </BRouter>
             </Container>
         );

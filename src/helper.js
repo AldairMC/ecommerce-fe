@@ -9,6 +9,21 @@ export const description_discount = (type) => {
     return msg
 }
 
-export const calc_discount = (price, type) => {
-    return
+export const calc_total = (price, count, type) => {
+    if(type === 1){
+        return price = (count*price) - (Math.floor(count/2)*price/2)
+    }else if(type === 2){
+        return price = (count*price) - (Math.floor(count/3)*price)
+    }else{
+        return price*count
+    }
+}
+
+export const calc_total_purchase = (purchase) => {
+    let x = []
+    purchase.map(i => {
+        let aux = calc_total(i.price, i.cantidad, i.type)
+        x.push(aux)
+    })
+    return x.reduce((a, b) => a+b, 0)
 }
