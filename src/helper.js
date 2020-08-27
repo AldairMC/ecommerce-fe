@@ -28,3 +28,11 @@ export const calc_total_purchase = (purchase) => {
     }
     return x.reduce((a, b) => a+b, 0)
 }
+
+export const image_discount = (type) => {
+    let clas = ''   
+    if(type === 0) return clas
+    else if(type === 1) clas = 'fas fa-percentage'
+    else if(type === 2) clas = 'fas fa-tag'
+    return clas
+}

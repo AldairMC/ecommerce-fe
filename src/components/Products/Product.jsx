@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components'
 import swal from 'sweetalert'
+import { image_discount } from '../../helper'
 
 
 class Product extends Component {
@@ -41,12 +42,23 @@ class Product extends Component {
             }
         `
 
+        const ContainerName = styled.span`
+            display: grid;
+            grid-template-columns: 90% 10%;
+        `
+
         const Name = styled.span`
             display: grid;
             font-size: 30px;
             color: #65a942;
             font-weight: bold;
             text-shadow: 3px 3px 3px #3662ac; 
+        `
+
+        const Discount = styled.span`
+            font-size: 25px;
+            color: #65a942;
+            text-shadow: 1px 1px 1px #3662ac;
         `
 
         const Price = styled.span`
@@ -80,10 +92,13 @@ class Product extends Component {
             text-shadow: 2px 2px 2px #3662ac; 
         `
 
-        let { id, name, src, price } = this.props.product
+        let { id, name, src, price, type } = this.props.product
         return (
             <Container>
-                <Name>{name}</Name>
+                <ContainerName>
+                    <Name>{name}</Name>
+                    <Discount><i className={`${image_discount(type)}`}></i></Discount>
+                </ContainerName>
                 <Img src={src} alt="Image" width="100px" height="100px"/>
                 <Price>{`$${price}`}</Price>
                 <Buttons>
