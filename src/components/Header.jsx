@@ -4,7 +4,7 @@ import styled from 'styled-components'
 //Style hero
 const Container = styled.div`
     display: grid;    
-    height: 500px;
+    height: 600px;
     width: 100%;
 `
 
@@ -27,7 +27,7 @@ const Header = props => {
     return (
         <Container>
             <Img 
-                src="assets/hero.png"
+                src="assets/hero.jpg"
                 alt="Hero"
             >
             </Img>

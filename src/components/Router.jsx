@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as BRouter, Switch, Route } from 'react-router-dom'
-import styled from 'styled-components' 
+import styled from 'styled-components'
+import swal from 'sweetalert'
 
 //Components
 import Header from './Header'
@@ -28,12 +29,12 @@ class Router extends Component {
                 {src: "https://i.ibb.co/FKfVk3Z/Bicho-2.png", name: "bicho_2"}
             ],
             products: [
-                {id: 1, src: "https://i.ibb.co/1T4LT92/006.png", name: "Dragon", price: 50, discount: true, type: 1},
-                {id: 2, src: "https://i.ibb.co/LtVdMmw/003.png", name: "Sapo", price: 100, discount: true, type: 2},
-                {id: 3, src: "https://i.ibb.co/chZPSDj/009.png", name: "Tortuga", price: 550, discount: false, type: 0},
-                {id: 4, src: "https://i.ibb.co/Q8QqKCG/015.png", name: "Abeja", price: 510, discount: false, type: 0},
-                {id: 5, src: "https://i.ibb.co/8BBzPkd/031.png", name: "Dino", price: 505, discount: false, type: 0},
-                {id: 6, src: "https://i.ibb.co/t4bW45v/034.png", name: "Rata", price: 570, discount: false, type: 0},
+                {id: 1, src: "https://i.ibb.co/9HQCtqT/Perro-2.png", name: "Combo 1", price: 50, discount: true, type: 1},
+                {id: 2, src: "https://i.ibb.co/QHGjqQ6/Perro-1.png", name: "Combo 2", price: 100, discount: false, type: 0},
+                {id: 3, src: "https://i.ibb.co/mq7FDF9/Combo-2.png", name: "Combo 3", price: 550, discount: true, type: 2},
+                {id: 4, src: "https://i.ibb.co/6bjmx4L/Combo-1.png", name: "Combo 4", price: 510, discount: false, type: 0},
+                {id: 5, src: "https://i.ibb.co/fn57qvV/Candado-2.png", name: "Item 1", price: 505, discount: false, type: 0},
+                {id: 6, src: "https://i.ibb.co/mR3401H/Candado-1.png", name: "Item 2", price: 570, discount: false, type: 0},
             ],
             purchase: [],
             persona_data: {
@@ -71,8 +72,21 @@ class Router extends Component {
         let compra = [...this.state.purchase]
         let validation = compra.findIndex(p => p.id === id)
         if (validation >= 0){
-          if (compra[validation].cantidad === 5) console.log("Alert: limite excedido!")  
-          else compra[validation].cantidad++
+          if (compra[validation].cantidad === 5) return swal({
+            title: "warning",
+            text: "Limite alcanzado",
+            icon: "info",
+            timer: 1000 
+        })  
+          else {
+            compra[validation].cantidad++
+            swal({
+                title: "Good job!",
+                text: "Producto agregado exitosamente!",
+                icon: "success",
+                timer: 1000 
+            })
+          } 
         }
         else compra = [...compra, {
             id,
@@ -83,6 +97,12 @@ class Router extends Component {
             type,
             cantidad: 1
         }]
+        swal({
+            title: "Good job!",
+            text: "Producto agregado exitosamente!",
+            icon: "success",
+            timer: 1000 
+        })
         return this.setState({
             purchase: compra
         })
@@ -93,8 +113,22 @@ class Router extends Component {
         let compra = [...this.state.purchase]
         let validation = compra.findIndex(p => p.id === id)
         if (validation >= 0){
-          if (compra[validation].cantidad === 0) console.log("Alert: Producto inexistente")
-          else compra[validation].cantidad--  
+          if (compra[validation].cantidad === 0){
+            return swal({
+                title: "Info...",
+                text: "Canasta vacía",
+                icon: "info",
+                timer: 1000 
+            })
+          } else {
+                compra[validation].cantidad--
+                swal({
+                    title: "Info...",
+                    text: "Producto eliminado exitosamente!",
+                    icon: "info",
+                    timer: 1000 
+                })
+          } 
         } 
         else compra = [...compra, {
             id,
@@ -125,7 +159,7 @@ class Router extends Component {
                         <Route exact path="/" render={() => (
                             <>
                                 <Header 
-                                    description={"List of the poke-products"}
+                                    description={"List of the products"}
                                 />
                                 <Products 
                                     {...{

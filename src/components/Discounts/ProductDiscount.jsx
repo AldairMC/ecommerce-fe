@@ -30,12 +30,17 @@ const Type = styled.span`
     font-size: 20px;
 `
 
+const Img = styled.img`
+    display: grid;
+    justify-self: center;
+`
+
 const ProductDiscount = props => {
     let { name, price, type, src } = props.products
     return (
         <>
             <Card>
-                <img src={src} alt="logo" />
+                <Img src={src} alt="logo" width="100" heigth="100" />
             </Card>
             <Description>
                 <Name>{name}</Name>

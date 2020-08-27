@@ -7,7 +7,7 @@ const Nav = styled.nav`
     display: grid;
     grid-template-columns: repeat(4, 25%);
     height: 75px;
-    background-color: #fdd000;
+    background-color: #7fb965;
     justify-self: center;
     text-align: center;
 `

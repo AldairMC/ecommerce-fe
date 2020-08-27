@@ -1,13 +1,22 @@
 import React, { Component } from 'react';
 import styled from 'styled-components'
+import swal from 'sweetalert'
 
 
 class Product extends Component {
 
     onClickDel = (data) => {
         let count = this.props.get_count(data.id)?.cantidad
-        if(count === undefined || count === 0) return console.log("profucto ixe")
-        else this.props.delProduct(data)
+        if(count === undefined || count === 0){
+            return swal({
+                title: "Error",
+                text: "Ningún producto en el carrito!",
+                icon: "error",
+                timer: 2000 
+            })
+        }else{
+            this.props.delProduct(data)
+        }
     }
     
     onClickAdd = data => {
@@ -35,7 +44,7 @@ class Product extends Component {
         const Name = styled.span`
             display: grid;
             font-size: 30px;
-            color: #ffcb05;
+            color: #65a942;
             font-weight: bold;
             text-shadow: 3px 3px 3px #3662ac; 
         `

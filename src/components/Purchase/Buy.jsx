@@ -42,7 +42,6 @@ class Buy extends Component {
             align-self: center;
             font-size: 40px;
             font-weight: bold;
-            font-style: italic;
             border-bottom: 2px dashed black;
             @media (max-width: 768px){
                 font-size: 15px;
@@ -71,7 +70,9 @@ class Buy extends Component {
             border: none;
             font-size: 25px;
             font-weight: bold;
-            font-style: italic;
+            @media (max-width: 768px){
+                font-size: 15px;
+            }       
         `
 
 
