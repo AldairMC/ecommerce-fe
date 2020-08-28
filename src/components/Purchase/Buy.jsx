@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import { calc_total_purchase } from '../../helper'
+import { calc_total_purchase, final_buy } from '../../helper'
 
 //componets
 import Item from './Item'
@@ -12,9 +12,15 @@ class Buy extends Component {
         return calc_total_purchase(purchase)
     }
 
-    click = () => {
-        let { purchase } = this.props
-        if(purchase.length === 0) console.log("Agrege productos a la compra")
+    buy_now = () => {
+        let { purchase, persona_data } = this.props
+        let buy_now = [
+            {...{
+                purchase,
+                persona_data
+            }}
+        ]
+        final_buy(buy_now)
     }
 
     render() {
@@ -100,7 +106,7 @@ class Buy extends Component {
                     <Description>{`$${this.get_total()}`}</Description>
                 </Total>
                 <Span>
-                    <Button onClick={() => this.click()}>
+                    <Button onClick={() => this.buy_now()}>
                         <i className="fas fa-money-bill-wave"></i> BUY NOW
                     </Button>
                 </Span>

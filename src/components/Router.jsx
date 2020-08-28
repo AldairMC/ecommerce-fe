@@ -33,8 +33,7 @@ class Router extends Component {
                 {id: 2, src: "https://i.ibb.co/QHGjqQ6/Perro-1.png", name: "Combo 2", price: 100, discount: false, type: 0},
                 {id: 3, src: "https://i.ibb.co/mq7FDF9/Combo-2.png", name: "Combo 3", price: 550, discount: true, type: 2},
                 {id: 4, src: "https://i.ibb.co/6bjmx4L/Combo-1.png", name: "Combo 4", price: 510, discount: false, type: 0},
-                {id: 5, src: "https://i.ibb.co/fn57qvV/Candado-2.png", name: "Item 1", price: 505, discount: false, type: 0},
-                {id: 6, src: "https://i.ibb.co/mR3401H/Candado-1.png", name: "Item 2", price: 570, discount: false, type: 0},
+                {id: 5, src: "https://i.ibb.co/fn57qvV/Candado-2.png", name: "Item 1", price: 505, discount: false, type: 0}
             ],
             purchase: [],
             persona_data: {
@@ -178,8 +177,10 @@ class Router extends Component {
                             <>
                                 <Buy 
                                     {...{
-                                        purchase
+                                        purchase,
+                                        persona_data
                                     }}
+                                    empty_purchase={this.empty_purchase}
                                 />
                             </>
                         )}>

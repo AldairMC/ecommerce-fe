@@ -1,3 +1,4 @@
+import swal from 'sweetalert'
 //function aux
 
 //Description the discount
@@ -35,4 +36,53 @@ export const image_discount = (type) => {
     else if(type === 1) clas = 'fas fa-percentage'
     else if(type === 2) clas = 'fas fa-tag'
     return clas
+}
+
+export const final_buy = (purchase) => {
+    let { 
+        name, 
+        last_name, 
+        email,
+        address,
+        document_person,
+        credit_card,
+        date_credit_card_ven,
+        address_cc,
+        src,
+        msg 
+    } = purchase[0].persona_data
+    if(
+        name === '' || 
+        last_name === '' || 
+        email === '' || 
+        address === '' || 
+        document_person === '' || 
+        credit_card === '' || 
+        date_credit_card_ven === '' || 
+        address_cc === '' || 
+        src === '' || 
+        msg === ''
+    ){
+        return swal({
+            title: "Oops..",
+            text: `Rellene todos los campos`,
+            icon: "info",
+            timer: 1000
+        })
+    }else if(purchase[0].purchase.length === 0){
+        return swal({
+            title: "Oops..",
+            text: `Carrito vacio, agrege productos`,
+            icon: "info",
+            timer: 1000
+        })
+    }else{
+        swal({
+            title: "Good job!",
+            text: `Compra realizada con exito!`,
+            icon: "success",
+            timer: 3000
+        })
+        window.location.href = "/"
+    }
 }
